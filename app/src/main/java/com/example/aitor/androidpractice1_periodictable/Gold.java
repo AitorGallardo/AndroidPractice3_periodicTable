@@ -7,4 +7,5 @@ final class Gold extends ChemicalElement {
         super.description = "holholahola";
     }
 
+
 }
