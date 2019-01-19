@@ -13,7 +13,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,8 +28,8 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <ImageButton
@@ -35,16 +37,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sulfur_16" />
+                        app:srcCompat="@drawable/sulfur_16"
+                        android:adjustViewBounds="true"
+                        android:layout_margin="10dp"/>
 
                     <ImageButton
                         android:id="@+id/imageButton7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/potassium_19" />
+                        app:srcCompat="@drawable/potassium_19"
+                        android:adjustViewBounds="true"
+                        android:layout_margin="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -57,16 +65,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/iron_26" />
+                        app:srcCompat="@drawable/iron_26"
+                        android:adjustViewBounds="true"
+                        android:layout_margin="10dp"/>
 
                     <ImageButton
                         android:id="@+id/imageButton9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/magnese_25" />
+                        app:srcCompat="@drawable/magnese_25"
+                        android:adjustViewBounds="true"
+                        android:layout_margin="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -79,16 +93,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sodium_11" />
+                        app:srcCompat="@drawable/sodium_11"
+                        android:layout_margin="10dp"/>
 
                     <ImageButton
                         android:id="@+id/imageButton5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/magnesium_12" />
+                        app:srcCompat="@drawable/magnesium_12"
+                        android:layout_margin="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -101,16 +121,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/oxygen_8" />
+                        app:srcCompat="@drawable/oxygen_8"
+                        android:layout_margin="10dp"/>
 
                     <ImageButton
                         android:id="@+id/imageButton6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/aluminum" />
+                        app:srcCompat="@drawable/aluminum"
+                        android:layout_margin="10dp"/>
 
                 </LinearLayout>
 
@@ -124,16 +150,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/hydrogen_1" />
+                        app:srcCompat="@drawable/hydrogen_1"
+                        android:layout_margin="10dp"/>
 
                     <ImageButton
                         android:id="@+id/imageButton2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/helium_2" />
+                        app:srcCompat="@drawable/helium_2"
+                        android:layout_margin="10dp"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         name.setText(gold.getName()); /// PORA AKAAAA SIIIII
         final TextView description =(TextView)element_receipt.findViewById(R.id.element_description);
         description.setText(gold.getDescription()); /// PORA AKAAAA SIIIII
-        innputAlert.setTitle("INFO");
+        // innputAlert.setTitle("INFO");
         innputAlert.setView(element_receipt);
 
         innputAlert.show();
