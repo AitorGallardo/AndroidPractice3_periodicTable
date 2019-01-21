@@ -13,9 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -26,7 +28,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ArrayList<ChemicalElement> elementsList = new ArrayList<ChemicalElement>();
+    ArrayList<ChemicalElement> elementArrList = new ArrayList<ChemicalElement>();
 
     ImageButton sulfurButton;
 
@@ -42,22 +44,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar.setNavigationIcon(R.drawable.aluminum);*/
         setTitle("LETS GOOOO");
 
-        elementsList.add(new Gold());
 
 
         // catch events
         sulfurButton = (ImageButton) findViewById(R.id.imgBtnSulfur);
         sulfurButton.setOnClickListener(this);
 
-        // get JSON OBj
-        try {
-            JSONObject obj = new JSONObject(loadJson());
-            
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Error loading elements info.",
-                    Toast.LENGTH_LONG).show();
-        }
+        // parse JSON
+
+
+
+//        try {
+//            JSONObject obj = new JSONObject(loadJson());
+//            JSONArray m_jArry = obj.getJSONArray("elements");
+//            // ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
+//            // HashMap<String, String> m_li;
+//
+//
+//            for (int i = 0; i < m_jArry.length(); i++) {
+//                JSONObject jo_inside = m_jArry.getJSONObject(i);
+//                // Log.d("Details-->", jo_inside.getString("formule"));
+//
+//                String name = jo_inside.getString("name");
+//                String description = jo_inside.getString("description");
+//                String symbol = jo_inside.getString("symbol");
+//
+//                elementArrList.add(new ChemicalElement(name, description, symbol));
+//            }
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//            Toast.makeText(this, "Error loading elements info.",
+//                    Toast.LENGTH_LONG).show();
+//        }
+        // parse JSON
+
+        // INICIALIZAR EL ARRAYADAPTER
+
+
+//        CElementAdapter adaptador =
+//                new CElementAdapter(this, elementArrList);
+//
+//        ListView listViewOfElements = (ListView)findViewById(R.id.simple_list_item);
+//
+//        listViewOfElements.setAdapter(adaptador);
+
+        //
+
+
     }
 
     /// FUMADON LETSGOOOOOOOOOOOOOOOOO ( TEMA SearCHBAR)
@@ -125,24 +159,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgBtnSulfur:
-                showElement();
+                // showElement();
                 break;
         }
     }
 
-    void showElement(){           /// MOSTRAR MAS DETAILS ESTARIA AHI EL ASUNTO
-        AlertDialog.Builder innputAlert = new AlertDialog.Builder(this);
-        View element_receipt = getLayoutInflater().inflate(R.layout.expanded_info,null);
-        Gold gold = new Gold();
-        final TextView name =(TextView)element_receipt.findViewById(R.id.element_name);
-        name.setText(gold.getName()); /// PORA AKAAAA SIIIII
-        final TextView description =(TextView)element_receipt.findViewById(R.id.element_description);
-        description.setText(gold.getDescription()); /// PORA AKAAAA SIIIII
-        // innputAlert.setTitle("INFO");
-        innputAlert.setView(element_receipt);
-
-        innputAlert.show();
-    }
+//    void showElement(){           /// MOSTRAR MAS DETAILS ESTARIA AHI EL ASUNTO
+//        AlertDialog.Builder innputAlert = new AlertDialog.Builder(this);
+//        View element_receipt = getLayoutInflater().inflate(R.layout.expanded_info,null);
+//        Gold gold = new Gold();
+//        final TextView name =(TextView)element_receipt.findViewById(R.id.element_name);
+//        name.setText(gold.getName()); /// PORA AKAAAA SIIIII
+//        final TextView description =(TextView)element_receipt.findViewById(R.id.element_description);
+//        description.setText(gold.getDescription()); /// PORA AKAAAA SIIIII
+//        // innputAlert.setTitle("INFO");
+//        innputAlert.setView(element_receipt);
+//
+//        innputAlert.show();
+//    }
 
     public String loadJson() {
         String json = null;
@@ -170,4 +204,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return json;
 
     }
+
+
 }

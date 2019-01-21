@@ -2,11 +2,13 @@
     "elements": [
     {
       "name": "Pedro",
-      "description": "HOLA ME LLAMO PEDRO"
+      "description": "HOLA ME LLAMO PEDRO",
+      "symbol": "4"
     },
     {
       "name": "JOSELUIS",
-      "description": "HOLA ME LLAMO JOSELUIS"
+      "description": "HOLA ME LLAMO JOSELUIS",
+      "symbol": "5"
     }
     ]
 }

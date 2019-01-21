@@ -1,6 +1,6 @@
 package com.example.aitor.androidpractice1_periodictable;
 
-public abstract class ChemicalElement {
+public class ChemicalElement {
 
     protected String name;
     protected String description;
@@ -9,6 +9,13 @@ public abstract class ChemicalElement {
     protected String atomicMass;
     protected String family;
     protected String electronicConfig;
+
+    public ChemicalElement(String name, String description, String symbol){
+        this.name = name;
+        this.description = description;
+        this.symbol = symbol;
+
+    }
 
 
     public String getName() {
