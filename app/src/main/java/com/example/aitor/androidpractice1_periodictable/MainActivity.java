@@ -16,8 +16,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -44,9 +48,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // catch events
         sulfurButton = (ImageButton) findViewById(R.id.imgBtnSulfur);
         sulfurButton.setOnClickListener(this);
+
+        // get JSON OBj
+        try {
+            JSONObject obj = new JSONObject(loadJson());
+            
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error loading elements info.",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
-    /// FUMADON LETSGOOOOOOOOOOOOOOOOO
+    /// FUMADON LETSGOOOOOOOOOOOOOOOOO ( TEMA SearCHBAR)
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -116,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    void showElement(){
+    void showElement(){           /// MOSTRAR MAS DETAILS ESTARIA AHI EL ASUNTO
         AlertDialog.Builder innputAlert = new AlertDialog.Builder(this);
         View element_receipt = getLayoutInflater().inflate(R.layout.expanded_info,null);
         Gold gold = new Gold();
@@ -128,5 +142,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         innputAlert.setView(element_receipt);
 
         innputAlert.show();
+    }
+
+    public String loadJson() {
+        String json = null;
+        try {
+
+            InputStream is = getAssets().open("elementsData.json");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            Toast.makeText(this, "Error loading elements info.",
+                    Toast.LENGTH_LONG).show();
+            return null;
+        }
+        return json;
+
     }
 }
