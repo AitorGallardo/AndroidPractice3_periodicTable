@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,17 +33,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageButton sulfurButton;
 
+    ListView listViewOfElements;
+
     Toolbar toolbar; //TESTTTTTTTTTTT
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
        // toolbar = (Toolbar)findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 /*        toolbar.setLogo(R.drawable.gold_79);
         toolbar.setNavigationIcon(R.drawable.aluminum);*/
-        setTitle("LETS GOOOO");
+        setTitle("Periodic Table");
 
 
 
@@ -54,40 +58,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-//        try {
-//            JSONObject obj = new JSONObject(loadJson());
-//            JSONArray m_jArry = obj.getJSONArray("elements");
-//            // ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
-//            // HashMap<String, String> m_li;
-//
-//
-//            for (int i = 0; i < m_jArry.length(); i++) {
-//                JSONObject jo_inside = m_jArry.getJSONObject(i);
-//                // Log.d("Details-->", jo_inside.getString("formule"));
-//
-//                String name = jo_inside.getString("name");
-//                String description = jo_inside.getString("description");
-//                String symbol = jo_inside.getString("symbol");
-//
-//                elementArrList.add(new ChemicalElement(name, description, symbol));
-//            }
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//            Toast.makeText(this, "Error loading elements info.",
-//                    Toast.LENGTH_LONG).show();
-//        }
+        try {
+            JSONObject obj = new JSONObject(loadJson());
+            JSONArray m_jArry = obj.getJSONArray("elements");
+            // ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
+            // HashMap<String, String> m_li;
+
+
+            for (int i = 0; i < m_jArry.length(); i++) {
+                JSONObject jo_inside = m_jArry.getJSONObject(i);
+                // Log.d("Details-->", jo_inside.getString("formule"));
+
+                String name = jo_inside.getString("name") != null ? jo_inside.getString("name"): "";
+                String description = jo_inside.getString("description") != null ? jo_inside.getString("description"): "";
+                String symbol = jo_inside.getString("symbol") != null ? jo_inside.getString("symbol"): "";
+
+                elementArrList.add(new ChemicalElement(name, description, symbol));
+
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error loading elements info.",
+                    Toast.LENGTH_LONG).show();
+            // Log.d("DetailsSSSSSSS-->",elementArrList);
+        }
         // parse JSON
 
         // INICIALIZAR EL ARRAYADAPTER
 
+            CElementAdapter adaptador =
+                    new CElementAdapter(this, elementArrList);
 
-//        CElementAdapter adaptador =
-//                new CElementAdapter(this, elementArrList);
-//
-//        ListView listViewOfElements = (ListView)findViewById(R.id.simple_list_item);
-//
-//        listViewOfElements.setAdapter(adaptador);
+            listViewOfElements = (ListView)findViewById(R.id.simple_list_item);
+
+            if(listViewOfElements != null){
+                listViewOfElements.setAdapter(adaptador);
+            }
+
 
         //
 
@@ -139,6 +148,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         }
+        // BUTTON TO GO TO LISTS
+
+
+
         return super.onCreateOptionsMenu(menu);
     }
 /*
