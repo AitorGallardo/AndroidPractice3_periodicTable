@@ -1,6 +1,9 @@
 package com.example.aitor.androidpractice1_periodictable;
 
-public class ChemicalElement {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ChemicalElement implements Parcelable {
 
     protected String name;
     protected String description;
@@ -15,6 +18,17 @@ public class ChemicalElement {
         this.description = description;
         this.symbol = symbol;
 
+    }
+
+
+    protected ChemicalElement(Parcel in) {
+        name = in.readString();
+        description = in.readString();
+        symbol = in.readString();
+        atomicNumber = in.readInt();
+        atomicMass = in.readString();
+        family = in.readString();
+        electronicConfig = in.readString();
     }
 
 
@@ -45,4 +59,33 @@ public class ChemicalElement {
         return electronicConfig;
     }
 
+
+
+    public static final Creator<ChemicalElement> CREATOR = new Creator<ChemicalElement>() {
+        @Override
+        public ChemicalElement createFromParcel(Parcel in) {
+            return new ChemicalElement(in);
+        }
+
+        @Override
+        public ChemicalElement[] newArray(int size) {
+            return new ChemicalElement[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(symbol);
+        dest.writeInt(atomicNumber);
+        dest.writeString(atomicMass);
+        dest.writeString(family);
+        dest.writeString(electronicConfig);
+    }
 }

@@ -2,6 +2,9 @@ package com.example.aitor.androidpractice1_periodictable;
 
 import android.app.SearchManager;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Parcelable;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -33,20 +36,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageButton sulfurButton;
 
-    ListView listViewOfElements;
+Bundle bundle;
 
-    Toolbar toolbar; //TESTTTTTTTTTTT
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-       // toolbar = (Toolbar)findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-/*        toolbar.setLogo(R.drawable.gold_79);
-        toolbar.setNavigationIcon(R.drawable.aluminum);*/
+
         setTitle("Periodic Table");
+
+        // INTENT
+        intent = new Intent(this,Main2ListActivity.class);
 
 
 
@@ -84,18 +86,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.LENGTH_LONG).show();
             // Log.d("DetailsSSSSSSS-->",elementArrList);
         }
-        // parse JSON
+        // intent a la segunda activity
 
         // INICIALIZAR EL ARRAYADAPTER
 
-            CElementAdapter adaptador =
-                    new CElementAdapter(this, elementArrList);
 
-            listViewOfElements = (ListView)findViewById(R.id.simple_list_item);
-
-            if(listViewOfElements != null){
-                listViewOfElements.setAdapter(adaptador);
-            }
 
 
         //
@@ -173,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.imgBtnSulfur:
                 // showElement();
+                navigate();
                 break;
         }
     }
@@ -216,6 +212,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return json;
 
+    }
+
+    public void navigate(){
+        intent.putParcelableArrayListExtra("Elements", (ArrayList<? extends Parcelable>) elementArrList);
+        startActivityForResult(intent,1234);
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1234 && resultCode==RESULT_OK) {
+            String res = data.getExtras().getString("result");
+        }
     }
 
 
