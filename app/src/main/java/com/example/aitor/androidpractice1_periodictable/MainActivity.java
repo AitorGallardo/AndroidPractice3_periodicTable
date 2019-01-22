@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class MainActivity extends CustomBaseActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ArrayList<ChemicalElement> elementArrList = new ArrayList<ChemicalElement>();
 
@@ -86,22 +86,29 @@ Bundle bundle;
                     Toast.LENGTH_LONG).show();
             // Log.d("DetailsSSSSSSS-->",elementArrList);
         }
-        // intent a la segunda activity
-
-        // INICIALIZAR EL ARRAYADAPTER
-
-
-
-
-        //
-
 
     }
 
-    /// FUMADON LETSGOOOOOOOOOOOOOOOOO ( TEMA SearCHBAR)
-
     // DECLARABA EL MENU
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+/*
+    @Override
+    public void onBackPressed() {
+        if (!searchView.isIconified()) {
+            searchView.setIconified(true);
+            findViewById(R.id.default_title).setVisibility(View.VISIBLE);
+        } else {
+            super.onBackPressed();
+        }
+    }*/
+
+    /// LETS GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    //
 
     @Override
     public void onClick(View v) {
