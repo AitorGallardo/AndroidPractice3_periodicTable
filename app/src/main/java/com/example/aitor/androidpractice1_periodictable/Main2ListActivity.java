@@ -8,7 +8,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class Main2ListActivity extends AppCompatActivity {
+public class Main2ListActivity extends CustomBaseActivity {
     Bundle mainActivityInfo;
     Intent intent;
     ListView listViewOfElements;
