@@ -12,12 +12,13 @@ public class ChemicalElement implements Parcelable {
     protected String atomicMass;
     protected String family;
     protected String electronicConfig;
+    protected String tag;
 
-    public ChemicalElement(String name, String description, String symbol){
+    public ChemicalElement(String name, String description, String symbol, String tag){
         this.name = name;
         this.description = description;
         this.symbol = symbol;
-
+        this.tag = tag;
     }
 
 
@@ -57,6 +58,10 @@ public class ChemicalElement implements Parcelable {
 
     public String getElectronicConfig() {
         return electronicConfig;
+    }
+
+    public String getTag() {
+        return tag;
     }
 
 

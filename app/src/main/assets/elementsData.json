@@ -1,34 +1,40 @@
 {
     "elements": [
     {
-      "name": "Pedro",
+      "name": "Sulfur",
       "description": "HOLA ME LLAMO PEDRO",
-      "symbol": "4"
+      "symbol": "4",
+      "tag": "sulfur"
     },
     {
-      "name": "JOSELUIS",
+      "name": "Potassium",
       "description": "HOLA ME LLAMO JOSELUIS",
-      "symbol": "5"
+      "symbol": "5",
+      "tag": "potassium"
     },
     {
-      "name": "Alberto",
+      "name": "Iron",
       "description": "HOLA ME LLAMO PEDRO",
-      "symbol": "4"
+      "symbol": "4",
+      "tag": "iron"
     },
     {
-      "name": "Manolito",
+      "name": "Manganese",
       "description": "HOLA ME LLAMO JOSELUIS",
-      "symbol": "5"
+      "symbol": "5",
+      "tag": "manganese"
     },
     {
-      "name": "Peko",
+      "name": "Sodium",
       "description": "HOLA ME LLAMO PEDRO",
-      "symbol": "4"
+      "symbol": "4",
+      "tag": "sodium"
     },
     {
-      "name": "PrimoDeRivera",
+      "name": "Magnesium",
       "description": "HOLA ME LLAMO JOSELUIS",
-      "symbol": "5"
+      "symbol": "5",
+      "tag": "magnesium"
     }
     ]
 }

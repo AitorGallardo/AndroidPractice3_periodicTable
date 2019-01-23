@@ -33,26 +33,28 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/imgBtnSulfur"
+                        android:id="@+id/sulfur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sulfur_16"
-                        android:adjustViewBounds="true"
-                        android:layout_margin="10dp"/>
+                        android:tag="sulfur"
+                        app:srcCompat="@drawable/sulfur_16" />
 
                     <ImageButton
-                        android:id="@+id/imageButton7"
+                        android:id="@+id/potassium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/potassium_19"
-                        android:adjustViewBounds="true"
-                        android:layout_margin="10dp"/>
+                        android:tag="potassium"
+                        app:srcCompat="@drawable/potassium_19" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -61,26 +63,28 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/imageButton10"
+                        android:id="@+id/iron"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/iron_26"
-                        android:adjustViewBounds="true"
-                        android:layout_margin="10dp"/>
+                        android:tag="iron"
+                        app:srcCompat="@drawable/iron_26" />
 
                     <ImageButton
-                        android:id="@+id/imageButton9"
+                        android:id="@+id/manganese"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/magnese_25"
-                        android:adjustViewBounds="true"
-                        android:layout_margin="10dp"/>
+                        android:tag="manganese"
+                        app:srcCompat="@drawable/magnese_25" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -89,26 +93,28 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/imageButton4"
+                        android:id="@+id/sodium"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/sodium_11"
-                        android:layout_margin="10dp"/>
+                        android:tag="sodium"
+                        app:srcCompat="@drawable/sodium_11" />
 
                     <ImageButton
-                        android:id="@+id/imageButton5"
+                        android:id="@+id/magnesium"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/magnesium_12"
-                        android:layout_margin="10dp"/>
+                        android:tag="magnesium"
+                        app:srcCompat="@drawable/magnesium_12" />
                 </LinearLayout>
 
                 <LinearLayout

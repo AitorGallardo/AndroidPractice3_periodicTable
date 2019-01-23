@@ -3,8 +3,10 @@ package com.example.aitor.androidpractice1_periodictable;
 import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +36,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ArrayList<ChemicalElement> elementArrList = new ArrayList<ChemicalElement>();
 
+    // Img View Buttons
     ImageButton sulfurButton;
+    ImageButton potassiumButton;
+    ImageButton ironButton;
+    ImageButton manganeseButton;
+    ImageButton sodiumButton;
+    ImageButton magnesiumButton;
+
 
 Bundle bundle;
 
@@ -52,9 +61,20 @@ Bundle bundle;
 
 
 
-        // catch events
-        sulfurButton = (ImageButton) findViewById(R.id.imgBtnSulfur);
+        // img view events
+        sulfurButton = (ImageButton) findViewById(R.id.sulfur);
         sulfurButton.setOnClickListener(this);
+        potassiumButton = (ImageButton) findViewById(R.id.potassium);
+        potassiumButton.setOnClickListener(this);
+        ironButton = (ImageButton) findViewById(R.id.iron);
+        ironButton.setOnClickListener(this);
+        manganeseButton = (ImageButton) findViewById(R.id.manganese);
+        manganeseButton.setOnClickListener(this);
+        sodiumButton = (ImageButton) findViewById(R.id.sodium);
+        sodiumButton.setOnClickListener(this);
+        magnesiumButton = (ImageButton) findViewById(R.id.magnesium);
+        magnesiumButton.setOnClickListener(this);
+
 
         // parse JSON
 
@@ -74,8 +94,9 @@ Bundle bundle;
                 String name = jo_inside.getString("name") != null ? jo_inside.getString("name"): "";
                 String description = jo_inside.getString("description") != null ? jo_inside.getString("description"): "";
                 String symbol = jo_inside.getString("symbol") != null ? jo_inside.getString("symbol"): "";
+                String tag = jo_inside.getString("tag") != null ? jo_inside.getString("tag"): "";
 
-                elementArrList.add(new ChemicalElement(name, description, symbol));
+                elementArrList.add(new ChemicalElement(name, description, symbol, tag));
 
             }
 
@@ -110,29 +131,30 @@ Bundle bundle;
     /// LETS GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     //
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.imgBtnSulfur:
-                // showElement();
-                navigate();
-                break;
-        }
+        String tag = (String) v.getTag();
+        showElement(tag);
     }
 
-//    void showElement(){           /// MOSTRAR MAS DETAILS ESTARIA AHI EL ASUNTO
-//        AlertDialog.Builder innputAlert = new AlertDialog.Builder(this);
-//        View element_receipt = getLayoutInflater().inflate(R.layout.expanded_info,null);
-//        Gold gold = new Gold();
-//        final TextView name =(TextView)element_receipt.findViewById(R.id.element_name);
-//        name.setText(gold.getName()); /// PORA AKAAAA SIIIII
-//        final TextView description =(TextView)element_receipt.findViewById(R.id.element_description);
-//        description.setText(gold.getDescription()); /// PORA AKAAAA SIIIII
-//        // innputAlert.setTitle("INFO");
-//        innputAlert.setView(element_receipt);
-//
-//        innputAlert.show();
-//    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    void showElement(String tag){
+        AlertDialog.Builder innputAlert = new AlertDialog.Builder(this);
+        View element_receipt = getLayoutInflater().inflate(R.layout.expanded_info,null);
+
+        final TextView name =(TextView)element_receipt.findViewById(R.id.element_name);
+        final TextView description =(TextView)element_receipt.findViewById(R.id.element_description);
+        elementArrList.stream().forEach(element -> {
+            if(tag.equals(element.getTag())){
+                name.setText(element.getName());
+                description.setText(element.getDescription());
+                return;
+            }
+        } );
+        innputAlert.setView(element_receipt);
+        innputAlert.show();
+    }
 
     public String loadJson() {
         String json = null;
