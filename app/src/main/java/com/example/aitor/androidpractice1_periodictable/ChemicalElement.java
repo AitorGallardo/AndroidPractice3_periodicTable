@@ -13,12 +13,14 @@ public class ChemicalElement implements Parcelable {
     protected String family;
     protected String electronicConfig;
     protected String tag;
+    protected String image;
 
-    public ChemicalElement(String name, String description, String symbol, String tag){
+    public ChemicalElement(String name, String description, String symbol, String tag, String image){
         this.name = name;
         this.description = description;
         this.symbol = symbol;
         this.tag = tag;
+        this.image = image;
     }
 
 
@@ -30,38 +32,37 @@ public class ChemicalElement implements Parcelable {
         atomicMass = in.readString();
         family = in.readString();
         electronicConfig = in.readString();
+        tag = in.readString();
+        image = in.readString();
     }
 
 
     public String getName() {
         return name;
     }
-
     public String getDescription() {
         return description;
     }
-
     public String getSymbol() {
         return symbol;
     }
-
     public int getAtomicNumber() {
         return atomicNumber;
     }
     public String getAtomicMass() {
         return atomicMass;
     }
-
     public String getFamily() {
         return family;
     }
-
     public String getElectronicConfig() {
         return electronicConfig;
     }
-
     public String getTag() {
         return tag;
+    }
+    public String getImage() {
+        return image;
     }
 
 
@@ -92,5 +93,7 @@ public class ChemicalElement implements Parcelable {
         dest.writeString(atomicMass);
         dest.writeString(family);
         dest.writeString(electronicConfig);
+        dest.writeString(tag);
+        dest.writeString(image);
     }
 }

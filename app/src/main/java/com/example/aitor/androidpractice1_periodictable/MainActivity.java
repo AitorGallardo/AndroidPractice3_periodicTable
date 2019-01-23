@@ -171,8 +171,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String description = jo_inside.getString("description") != null ? jo_inside.getString("description"): "";
                 String symbol = jo_inside.getString("symbol") != null ? jo_inside.getString("symbol"): "";
                 String tag = jo_inside.getString("tag") != null ? jo_inside.getString("tag"): "";
+                String image = jo_inside.getString("image") != null ? jo_inside.getString("image"): "";
 
-                elementArrList.add(new ChemicalElement(name, description, symbol, tag));
+                elementArrList.add(new ChemicalElement(name, description, symbol,tag, image));
             }
         } catch (JSONException e) {
             e.printStackTrace();

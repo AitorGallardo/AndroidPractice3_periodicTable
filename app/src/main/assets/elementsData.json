@@ -4,37 +4,43 @@
       "name": "Sulfur",
       "description": "HOLA ME LLAMO PEDRO",
       "symbol": "4",
-      "tag": "sulfur"
+      "tag": "sulfur",
+      "image":"@drawable/sulfur_16"
     },
     {
       "name": "Potassium",
       "description": "HOLA ME LLAMO JOSELUIS",
       "symbol": "5",
-      "tag": "potassium"
+      "tag": "potassium",
+      "image":"@drawable/potassium_19"
     },
     {
       "name": "Iron",
       "description": "HOLA ME LLAMO PEDRO",
       "symbol": "4",
-      "tag": "iron"
+      "tag": "iron",
+      "image":"@drawable/iron_26"
     },
     {
       "name": "Manganese",
       "description": "HOLA ME LLAMO JOSELUIS",
       "symbol": "5",
-      "tag": "manganese"
+      "tag": "manganese",
+      "image":"@drawable/magnese_25"
     },
     {
       "name": "Sodium",
       "description": "HOLA ME LLAMO PEDRO",
       "symbol": "4",
-      "tag": "sodium"
+      "tag": "sodium",
+      "image":"@drawable/sodium_11"
     },
     {
       "name": "Magnesium",
       "description": "HOLA ME LLAMO JOSELUIS",
       "symbol": "5",
-      "tag": "magnesium"
+      "tag": "magnesium",
+      "image":"@drawable/magnesium_12"
     }
     ]
 }
