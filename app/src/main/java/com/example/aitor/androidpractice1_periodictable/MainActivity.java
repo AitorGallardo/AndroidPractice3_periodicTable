@@ -3,6 +3,7 @@ package com.example.aitor.androidpractice1_periodictable;
 import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -104,16 +106,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     void showElement(String tag){
         AlertDialog.Builder innputAlert = new AlertDialog.Builder(this);
         View element_receipt = getLayoutInflater().inflate(R.layout.expanded_info,null);
+        Resources res = getResources();
 
-        final TextView name =(TextView)element_receipt.findViewById(R.id.element_name);
-        final TextView description =(TextView)element_receipt.findViewById(R.id.element_description);
+        final TextView nameToDisplay =(TextView)element_receipt.findViewById(R.id.element_name);
+        final TextView descriptionDisplay =(TextView)element_receipt.findViewById(R.id.element_description);
+        final ImageView imageToDisplay = (ImageView)element_receipt.findViewById(R.id.imageViewExpInfo);
+
         elementArrList.stream().forEach(element -> {
             if(tag.equals(element.getTag())){
-                name.setText(element.getName());
-                description.setText(element.getDescription());
+                final String name = element.getName() != null ? element.getName() : "";
+                nameToDisplay.setText(name);
+                final String description = element.getDescription() != null ? element.getDescription() : "";
+                descriptionDisplay.setText(description);
+                final String image = element.getImage() != null ? element.getImage() : "ic_launcher_foreground";
+                // we need id type int of drawable to get the image
+                final int imageId = res.getIdentifier(image , "drawable",getPackageName());
+                imageToDisplay.setImageResource(imageId);
+
                 return;
             }
         } );
+
         innputAlert.setView(element_receipt);
         innputAlert.show();
     } // Pop up element detailed info
