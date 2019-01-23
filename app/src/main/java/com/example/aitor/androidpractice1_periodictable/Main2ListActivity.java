@@ -110,18 +110,6 @@ public class Main2ListActivity extends AppCompatActivity {
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         }
-//        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-//            @Override
-//            public boolean onClose() {
-//
-//                listViewOfElements.setAdapter(allItemsAdapter);
-//                return false;
-//            }
-//        });
-        // BUTTON TO GO TO LISTS
-
-
-
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -15,8 +15,10 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -35,18 +37,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ArrayList<ChemicalElement> elementArrList = new ArrayList<ChemicalElement>();
-
-    // Img View Buttons
-    ImageButton sulfurButton;
-    ImageButton potassiumButton;
-    ImageButton ironButton;
-    ImageButton manganeseButton;
-    ImageButton sodiumButton;
-    ImageButton magnesiumButton;
-
-
-Bundle bundle;
-
+    //region Img View Buttons
+        ImageButton sulfurButton;
+        ImageButton potassiumButton;
+        ImageButton ironButton;
+        ImageButton manganeseButton;
+        ImageButton sodiumButton;
+        ImageButton magnesiumButton;
+    //    //endregion
     Intent intent;
 
     @Override
@@ -56,12 +54,9 @@ Bundle bundle;
 
         setTitle("Periodic Table");
 
-        // INTENT
         intent = new Intent(this,Main2ListActivity.class);
 
-
-
-        // img view events
+        //region IMG view events
         sulfurButton = (ImageButton) findViewById(R.id.sulfur);
         sulfurButton.setOnClickListener(this);
         potassiumButton = (ImageButton) findViewById(R.id.potassium);
@@ -74,62 +69,10 @@ Bundle bundle;
         sodiumButton.setOnClickListener(this);
         magnesiumButton = (ImageButton) findViewById(R.id.magnesium);
         magnesiumButton.setOnClickListener(this);
+        //endregion
 
-
-        // parse JSON
-
-
-
-        try {
-            JSONObject obj = new JSONObject(loadJson());
-            JSONArray m_jArry = obj.getJSONArray("elements");
-            // ArrayList<HashMap<String, String>> formList = new ArrayList<HashMap<String, String>>();
-            // HashMap<String, String> m_li;
-
-
-            for (int i = 0; i < m_jArry.length(); i++) {
-                JSONObject jo_inside = m_jArry.getJSONObject(i);
-                // Log.d("Details-->", jo_inside.getString("formule"));
-
-                String name = jo_inside.getString("name") != null ? jo_inside.getString("name"): "";
-                String description = jo_inside.getString("description") != null ? jo_inside.getString("description"): "";
-                String symbol = jo_inside.getString("symbol") != null ? jo_inside.getString("symbol"): "";
-                String tag = jo_inside.getString("tag") != null ? jo_inside.getString("tag"): "";
-
-                elementArrList.add(new ChemicalElement(name, description, symbol, tag));
-
-            }
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Error loading elements info.",
-                    Toast.LENGTH_LONG).show();
-            // Log.d("DetailsSSSSSSS-->",elementArrList);
-        }
-
+        parseJson();
     }
-
-    // DECLARABA EL MENU
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-/*
-    @Override
-    public void onBackPressed() {
-        if (!searchView.isIconified()) {
-            searchView.setIconified(true);
-            findViewById(R.id.default_title).setVisibility(View.VISIBLE);
-        } else {
-            super.onBackPressed();
-        }
-    }*/
-
-    /// LETS GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    //
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -137,6 +80,25 @@ Bundle bundle;
         String tag = (String) v.getTag();
         showElement(tag);
     }
+
+    //region Handle MENU
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.listIcon:
+                navigate();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    //endregion
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     void showElement(String tag){
@@ -154,6 +116,19 @@ Bundle bundle;
         } );
         innputAlert.setView(element_receipt);
         innputAlert.show();
+    } // Pop up element detailed info
+
+    public void navigate(){
+        intent.putParcelableArrayListExtra("Elements", (ArrayList<? extends Parcelable>) elementArrList);
+        startActivityForResult(intent,1234);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1234 && resultCode==RESULT_OK) {
+            String res = data.getExtras().getString("result");
+        }
     }
 
     public String loadJson() {
@@ -183,18 +158,26 @@ Bundle bundle;
 
     }
 
-    public void navigate(){
-        intent.putParcelableArrayListExtra("Elements", (ArrayList<? extends Parcelable>) elementArrList);
-        startActivityForResult(intent,1234);
+    public void parseJson(){
 
+        try {
+            JSONObject obj = new JSONObject(loadJson());
+            JSONArray m_jArry = obj.getJSONArray("elements");
 
-    }
+            for (int i = 0; i < m_jArry.length(); i++) {
+                JSONObject jo_inside = m_jArry.getJSONObject(i);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1234 && resultCode==RESULT_OK) {
-            String res = data.getExtras().getString("result");
+                String name = jo_inside.getString("name") != null ? jo_inside.getString("name"): "";
+                String description = jo_inside.getString("description") != null ? jo_inside.getString("description"): "";
+                String symbol = jo_inside.getString("symbol") != null ? jo_inside.getString("symbol"): "";
+                String tag = jo_inside.getString("tag") != null ? jo_inside.getString("tag"): "";
+
+                elementArrList.add(new ChemicalElement(name, description, symbol, tag));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error loading elements info.",
+                    Toast.LENGTH_LONG).show();
         }
     }
 
