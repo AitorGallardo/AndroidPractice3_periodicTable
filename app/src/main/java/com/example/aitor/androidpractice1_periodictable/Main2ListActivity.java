@@ -41,9 +41,10 @@ public class Main2ListActivity extends AppCompatActivity {
         listOfElements = getIntent().getParcelableArrayListExtra("Elements");
 
 
-                allItemsAdapter =   new CElementAdapter(this, listOfElements);
+        allItemsAdapter =   new CElementAdapter(this, listOfElements);
 
         listViewOfElements = (ListView)findViewById(R.id.simple_list_item);
+
 
         if(listViewOfElements != null){
             listViewOfElements.setAdapter(allItemsAdapter);
