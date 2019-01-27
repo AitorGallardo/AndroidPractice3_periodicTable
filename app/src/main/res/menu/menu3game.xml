@@ -8,13 +8,4 @@
         android:icon="@drawable/arrowback"
         android:title=""
         app:showAsAction="always|withText" />
-    <item
-        android:id="@+id/action_search"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="Search"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="ifRoom" />
-
 </menu>
-
-

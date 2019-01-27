@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/gameIcon"
+        android:title=""
+        app:showAsAction="always"
+        android:icon="@drawable/gameicon"
+        />
+    <item
         android:id="@+id/listIcon"
         android:title=""
         app:showAsAction="always"

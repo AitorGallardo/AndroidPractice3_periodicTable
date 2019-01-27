@@ -35,6 +35,7 @@ public class Main2ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.elements_list);
+        setTitle("Periodic Table");
 
         intent = new Intent(this, MainActivity.class);
         // mainActivityInfo = getIntent().getExtras();

@@ -1,36 +1,26 @@
 package com.example.aitor.androidpractice1_periodictable;
 
-import android.app.SearchManager;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,16 +37,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageButton sodiumButton;
         ImageButton magnesiumButton;
     //    //endregion
-    Intent intent;
+    Intent listIntent;
+    Intent gameIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         setTitle("Periodic Table");
 
-        intent = new Intent(this,Main2ListActivity.class);
+        listIntent = new Intent(this,Main2ListActivity.class);
+        gameIntent = new Intent(this,Main3GameActivity.class);
 
         //region IMG view events
         sulfurButton = (ImageButton) findViewById(R.id.sulfur);
@@ -94,7 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.listIcon:
-                navigate();
+                navigateToList();
+                return true;
+            case R.id.gameIcon:
+                navigateToGame();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -131,9 +125,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         innputAlert.show();
     } // Pop up element detailed info
 
-    public void navigate(){
-        intent.putParcelableArrayListExtra("Elements", (ArrayList<? extends Parcelable>) elementArrList);
-        startActivityForResult(intent,1234);
+    public void navigateToList(){
+        listIntent.putParcelableArrayListExtra("Elements", (ArrayList<? extends Parcelable>) elementArrList);
+        startActivityForResult(listIntent,1234);
+    }
+
+    public void navigateToGame(){
+        gameIntent.putExtra("name","hola");
+        startActivityForResult(gameIntent,1234);
     }
 
     @Override
