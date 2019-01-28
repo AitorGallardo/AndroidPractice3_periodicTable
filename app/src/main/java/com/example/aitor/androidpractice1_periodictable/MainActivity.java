@@ -81,11 +81,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ImageView imageview2 = view.findViewById(R.id.image2);
 
             final String image1 = elementArrList.get(i).getImage() != null ? elementArrList.get(i).getImage() : "ic_launcher_foreground";
+            final String name1 = elementArrList.get(i).getName() != null ? elementArrList.get(i).getName() : "ic_launcher_foreground";
             final int imageId1 = res.getIdentifier(image1 , "drawable",getPackageName());
             imageview1.setImageResource(imageId1);
+            imageview1.setTag(name1.toLowerCase());
+
             final String image2 = elementArrList.get(i+1).getImage() != null ? elementArrList.get(i+1).getImage() : "ic_launcher_foreground";
+            final String name2 = elementArrList.get(i).getName() != null ? elementArrList.get(i).getName() : "ic_launcher_foreground";
             final int imageId2 = res.getIdentifier(image2 , "drawable",getPackageName());
             imageview2.setImageResource(imageId2);
+            imageview1.setTag(name2.toLowerCase());
 
             gallery.addView(view);
         }
@@ -98,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         String tag = (String) v.getTag();
         showElement(tag);
+
     }
 
     //region Handle MENU
