@@ -15,11 +15,10 @@ public class ChemicalElement implements Parcelable {
     protected String tag;
     protected String image;
 
-    public ChemicalElement(String name, String description, String symbol, String tag, String image){
+    public ChemicalElement(String name, String description, String symbol, String image){
         this.name = name;
         this.description = description;
         this.symbol = symbol;
-        this.tag = tag;
         this.image = image;
     }
 

@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ArrayList<ChemicalElement> elementArrList = new ArrayList<ChemicalElement>();
+    ArrayList<ChemicalElement> elementArrList = new ArrayList<>();
 
     Intent listIntent;
     Intent gameIntent;
@@ -64,17 +63,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ImageView imageview1 = view.findViewById(R.id.image1);
             ImageView imageview2 = view.findViewById(R.id.image2);
 
-            final String image1 = elementArrList.get(i).getImage() != null ? elementArrList.get(i).getImage() : "ic_launcher_foreground";
-            final String name1 = elementArrList.get(i).getName() != null ? elementArrList.get(i).getName() : "ic_launcher_foreground";
-            final int imageId1 = res.getIdentifier(image1 , "drawable",getPackageName());
-            imageview1.setImageResource(imageId1);
-            imageview1.setTag(name1.toLowerCase());
+            if(elementArrList.get(i) != null){
+                final String image1 = elementArrList.get(i).getImage() != null ? elementArrList.get(i).getImage() : "ic_launcher_foreground";
+                final String name1 = elementArrList.get(i).getName() != null ? elementArrList.get(i).getName() : "ic_launcher_foreground";
+                final int imageId1 = res.getIdentifier(image1 , "drawable",getPackageName());
+                imageview1.setImageResource(imageId1);
+                imageview1.setTag(name1.toLowerCase());
+            } else {
+                final String image1 = "ic_launcher_foreground";
+                final int imageId1 = res.getIdentifier(image1 , "drawable",getPackageName());
+                imageview1.setImageResource(imageId1);
+            }
 
-            final String image2 = elementArrList.get(i+1).getImage() != null ? elementArrList.get(i+1).getImage() : "ic_launcher_foreground";
-            final String name2 = elementArrList.get(i).getName() != null ? elementArrList.get(i).getName() : "ic_launcher_foreground";
-            final int imageId2 = res.getIdentifier(image2 , "drawable",getPackageName());
-            imageview2.setImageResource(imageId2);
-            imageview1.setTag(name2.toLowerCase());
+            if(elementArrList.get(i+1) != null){
+                final String image2 = elementArrList.get(i+1).getImage() != null ? elementArrList.get(i+1).getImage() : "ic_launcher_foreground";
+                final String name2 = elementArrList.get(i).getName() != null ? elementArrList.get(i).getName() : "ic_launcher_foreground";
+                final int imageId2 = res.getIdentifier(image2 , "drawable",getPackageName());
+                imageview2.setImageResource(imageId2);
+                imageview1.setTag(name2.toLowerCase());
+            } else{
+                final String image2 = "ic_launcher_foreground";
+                final int imageId2 = res.getIdentifier(image2 , "drawable",getPackageName());
+                imageview2.setImageResource(imageId2);
+            }
 
             gallery.addView(view);
         }
@@ -176,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } catch (IOException ex) {
             ex.printStackTrace();
-            Toast.makeText(this, "Error loading elements info.",
+            Toast.makeText(this, "Error loading elements files.",
                     Toast.LENGTH_LONG).show();
             return null;
         }
@@ -194,16 +205,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 JSONObject jo_inside = m_jArry.getJSONObject(i);
 
                 String name = jo_inside.getString("name") != null ? jo_inside.getString("name"): "";
-                String description = jo_inside.getString("description") != null ? jo_inside.getString("description"): "";
+                String description = jo_inside.getString("summary") != null ? jo_inside.getString("summary"): "";
                 String symbol = jo_inside.getString("symbol") != null ? jo_inside.getString("symbol"): "";
-                String tag = jo_inside.getString("tag") != null ? jo_inside.getString("tag"): "";
                 String image = jo_inside.getString("image") != null ? jo_inside.getString("image"): "";
 
-                elementArrList.add(new ChemicalElement(name, description, symbol,tag, image));
+                elementArrList.add(new ChemicalElement(name, description, symbol, image));
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error loading elements info.",
+            Toast.makeText(this, "Error loading elements files.",
                     Toast.LENGTH_LONG).show();
         }
     }
