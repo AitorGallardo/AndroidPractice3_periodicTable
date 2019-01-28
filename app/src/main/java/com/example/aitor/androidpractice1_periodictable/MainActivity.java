@@ -9,12 +9,14 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Intent listIntent;
     Intent gameIntent;
 
+    LinearLayout gallery;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,21 +54,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gameIntent = new Intent(this,Main3GameActivity.class);
 
         //region IMG view events
-        sulfurButton = (ImageButton) findViewById(R.id.sulfur);
-        sulfurButton.setOnClickListener(this);
-        potassiumButton = (ImageButton) findViewById(R.id.potassium);
-        potassiumButton.setOnClickListener(this);
-        ironButton = (ImageButton) findViewById(R.id.iron);
-        ironButton.setOnClickListener(this);
-        manganeseButton = (ImageButton) findViewById(R.id.manganese);
-        manganeseButton.setOnClickListener(this);
-        sodiumButton = (ImageButton) findViewById(R.id.sodium);
-        sodiumButton.setOnClickListener(this);
-        magnesiumButton = (ImageButton) findViewById(R.id.magnesium);
-        magnesiumButton.setOnClickListener(this);
+//        sulfurButton = (ImageButton) findViewById(R.id.sulfur);
+//        sulfurButton.setOnClickListener(this);
+//        potassiumButton = (ImageButton) findViewById(R.id.potassium);
+//        potassiumButton.setOnClickListener(this);
+//        ironButton = (ImageButton) findViewById(R.id.iron);
+//        ironButton.setOnClickListener(this);
+//        manganeseButton = (ImageButton) findViewById(R.id.manganese);
+//        manganeseButton.setOnClickListener(this);
+//        sodiumButton = (ImageButton) findViewById(R.id.sodium);
+//        sodiumButton.setOnClickListener(this);
+//        magnesiumButton = (ImageButton) findViewById(R.id.magnesium);
+//        magnesiumButton.setOnClickListener(this);
         //endregion
 
         parseJson();
+
+        gallery = findViewById(R.id.gallery);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        Resources res = getResources();
+
+        for(int i=0; i < elementArrList.size(); i=i+2){
+            View view = inflater.inflate(R.layout.main_images, gallery, false);
+
+            ImageView imageview1 = view.findViewById(R.id.image1);
+            ImageView imageview2 = view.findViewById(R.id.image2);
+
+            final String image1 = elementArrList.get(i).getImage() != null ? elementArrList.get(i).getImage() : "ic_launcher_foreground";
+            final int imageId1 = res.getIdentifier(image1 , "drawable",getPackageName());
+            imageview1.setImageResource(imageId1);
+            final String image2 = elementArrList.get(i+1).getImage() != null ? elementArrList.get(i+1).getImage() : "ic_launcher_foreground";
+            final int imageId2 = res.getIdentifier(image2 , "drawable",getPackageName());
+            imageview2.setImageResource(imageId2);
+
+            gallery.addView(view);
+        }
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
