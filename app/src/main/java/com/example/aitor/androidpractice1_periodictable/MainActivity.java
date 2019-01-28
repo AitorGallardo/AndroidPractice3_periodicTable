@@ -31,14 +31,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     ArrayList<ChemicalElement> elementArrList = new ArrayList<ChemicalElement>();
-    //region Img View Buttons
-        ImageButton sulfurButton;
-        ImageButton potassiumButton;
-        ImageButton ironButton;
-        ImageButton manganeseButton;
-        ImageButton sodiumButton;
-        ImageButton magnesiumButton;
-    //    //endregion
+
     Intent listIntent;
     Intent gameIntent;
 
@@ -53,23 +46,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listIntent = new Intent(this,Main2ListActivity.class);
         gameIntent = new Intent(this,Main3GameActivity.class);
 
-        //region IMG view events
-//        sulfurButton = (ImageButton) findViewById(R.id.sulfur);
-//        sulfurButton.setOnClickListener(this);
-//        potassiumButton = (ImageButton) findViewById(R.id.potassium);
-//        potassiumButton.setOnClickListener(this);
-//        ironButton = (ImageButton) findViewById(R.id.iron);
-//        ironButton.setOnClickListener(this);
-//        manganeseButton = (ImageButton) findViewById(R.id.manganese);
-//        manganeseButton.setOnClickListener(this);
-//        sodiumButton = (ImageButton) findViewById(R.id.sodium);
-//        sodiumButton.setOnClickListener(this);
-//        magnesiumButton = (ImageButton) findViewById(R.id.magnesium);
-//        magnesiumButton.setOnClickListener(this);
-        //endregion
-
         parseJson();
+        inflateLayoutWithImages();
 
+
+
+    }
+
+    public void inflateLayoutWithImages(){
         gallery = findViewById(R.id.gallery);
         LayoutInflater inflater = LayoutInflater.from(this);
         Resources res = getResources();
@@ -94,8 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             gallery.addView(view);
         }
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -139,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final ImageView imageToDisplay = (ImageView)element_receipt.findViewById(R.id.imageViewExpInfo);
 
         elementArrList.stream().forEach(element -> {
-            if(tag.equals(element.getTag())){
+            if(tag.equals(element.getName().toLowerCase())){
                 final String name = element.getName() != null ? element.getName() : "";
                 nameToDisplay.setText(name);
                 final String description = element.getDescription() != null ? element.getDescription() : "";
