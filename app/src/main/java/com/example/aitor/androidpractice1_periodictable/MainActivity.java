@@ -63,7 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             View view = inflater.inflate(R.layout.main_images, gallery, false);
 
             ImageView imageview1 = view.findViewById(R.id.image1);
+            imageview1.setOnClickListener(this);
             ImageView imageview2 = view.findViewById(R.id.image2);
+            imageview2.setOnClickListener(this);
 
             if(elementArrList.get(i) != null){
                 final String image1 = elementArrList.get(i).getImage() != null ? elementArrList.get(i).getImage() : "ic_launcher_foreground";
@@ -79,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if(elementArrList.get(i+1) != null){
                 final String image2 = elementArrList.get(i+1).getImage() != null ? elementArrList.get(i+1).getImage() : "ic_launcher_foreground";
-                final String name2 = elementArrList.get(i).getName() != null ? elementArrList.get(i).getName() : "ic_launcher_foreground";
+                final String name2 = elementArrList.get(i+1).getName() != null ? elementArrList.get(i+1).getName() : "ic_launcher_foreground";
                 final int imageId2 = res.getIdentifier(image2 , "drawable",getPackageName());
                 imageview2.setImageResource(imageId2);
-                imageview1.setTag(name2.toLowerCase());
+                imageview2.setTag(name2.toLowerCase());
             } else{
                 final String image2 = "ic_launcher_foreground";
                 final int imageId2 = res.getIdentifier(image2 , "drawable",getPackageName());

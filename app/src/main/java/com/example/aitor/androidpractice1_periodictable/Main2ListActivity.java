@@ -3,8 +3,12 @@ package com.example.aitor.androidpractice1_periodictable;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Parcelable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -15,9 +19,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -50,7 +56,22 @@ public class Main2ListActivity extends AppCompatActivity {
         if(listViewOfElements != null){
             listViewOfElements.setAdapter(allItemsAdapter);
         }
+
+        listViewOfElements.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected item text from ListView
+                ChemicalElement  selectedItem = (ChemicalElement) parent.getItemAtPosition(position);
+                    String name = selectedItem.getName().toLowerCase();
+                    showElement(name);
+            }
+        });
     }
+
+
+
+
 
 
     @Override
@@ -116,11 +137,6 @@ public class Main2ListActivity extends AppCompatActivity {
     }
 
 
-    public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Main2ListActivity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
     public void search(String query) {
 
         ArrayList<ChemicalElement> copyOfList = new ArrayList<ChemicalElement>();
@@ -148,4 +164,33 @@ public class Main2ListActivity extends AppCompatActivity {
                 new CElementAdapter(this,copyOfList);
         listViewOfElements.setAdapter(adaptador);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    void showElement(String tag){
+        AlertDialog.Builder innputAlert = new AlertDialog.Builder(this);
+        View element_receipt = getLayoutInflater().inflate(R.layout.expanded_info,null);
+        Resources res = getResources();
+
+        final TextView nameToDisplay =(TextView)element_receipt.findViewById(R.id.element_name);
+        final TextView descriptionDisplay =(TextView)element_receipt.findViewById(R.id.element_description);
+        final ImageView imageToDisplay = (ImageView)element_receipt.findViewById(R.id.imageViewExpInfo);
+
+        listOfElements.stream().forEach(element -> {
+            if(tag.equals(element.getName().toLowerCase())){
+                final String name = element.getName() != null ? element.getName() : "";
+                nameToDisplay.setText(name);
+                final String description = element.getDescription() != null ? element.getDescription() : "";
+                descriptionDisplay.setText(description);
+                final String image = element.getImage() != null ? element.getImage() : "ic_launcher_foreground";
+                // we need id type int of drawable to get the image
+                final int imageId = res.getIdentifier(image , "drawable",getPackageName());
+                imageToDisplay.setImageResource(imageId);
+
+                return;
+            }
+        } );
+
+        innputAlert.setView(element_receipt);
+        innputAlert.show();
+    } // Pop up element detailed info
 }
