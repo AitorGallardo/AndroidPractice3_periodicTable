@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Intent gameIntent;
 
     LinearLayout gallery;
+    String jsonFileName = "elementsData.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listIntent = new Intent(this,Main2ListActivity.class);
         gameIntent = new Intent(this,Main3GameActivity.class);
 
-        parseJson();
+        parseJson(loadJson(jsonFileName));
         inflateLayoutWithImages();
 
 
@@ -168,11 +169,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public String loadJson() {
+    public String loadJson(String fileName) {
         String json = null;
         try {
 
-            InputStream is = getAssets().open("elementsData.json");
+            InputStream is = getAssets().open(fileName);
 
             int size = is.available();
 
@@ -195,10 +196,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void parseJson(){
+    public void parseJson(String jsonFile){
 
         try {
-            JSONObject obj = new JSONObject(loadJson());
+            JSONObject obj = new JSONObject(jsonFile);
             JSONArray m_jArry = obj.getJSONArray("elements");
 
             for (int i = 0; i < m_jArry.length(); i++) {

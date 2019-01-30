@@ -1,0 +1,135 @@
+{
+  "quiz": [
+    {
+      "question": "Which of these is not made from potassium compounds?",
+      "answers": [
+        {"name":"glass","value": false},
+        {"name":"gunpowder","value": false},
+        {"name":"soap","value": false},
+        {"name":"bread","value": true}
+      ],
+      "response":false
+    },
+    {
+      "question": "Which of these is not a rare-earth element?",
+      "answers": [
+        {"name":"terbium","value": false},
+        {"name":"gold","value": true},
+        {"name":"lanthanum","value": false},
+        {"name":"samarium","value": false}
+      ],
+      "response":false
+    },
+    {
+      "question": "Which of these is heavier than iron?",
+      "answers": [
+        {"name":"carbon","value": false},
+        {"name":"potassium","value": false},
+        {"name":"manganese","value": false},
+        {"name":"gold","value": true}
+      ],
+      "response":false
+    },
+    {
+      "question":"What element is almost as light as hydrogen?",
+      "answers": [
+        {"name":"oxygen","value": false},
+        {"name":"helium","value": true},
+        {"name":"aluminum","value": false},
+        {"name":"krypton","value": false}
+      ],
+      "response":false
+    },
+    {
+      "question": "How many electrons does a sodium atom have?",
+      "answers": [
+        {"name":"13","value":false},
+        {"name":"15","value":false},
+        {"name":"11","value":true},
+        {"name":"8","value":false}
+      ],
+      "response":false
+    },
+    {
+      "question": "What do we call a blend of two chemical elements?",
+      "answers": [
+        {"name":"computer","value": false},
+        {"name":"compound","value": true},
+        {"name":"compost","value": false},
+        {"name":"component","value": false}
+      ],
+      "response":false
+    },
+    {
+      "question": "What kind of electric charge does an electron have?",
+      "answers": [
+        {"name":"negative","value": true},
+        {"name":"reverse","value": false},
+        {"name":"positive","value": false},
+        {"name":"neutral","value": false}
+      ],
+      "response":false
+    },
+    {
+      "question": "What kind of electric charge does a proton have?",
+      "answers": [
+        {"name":"positive","value": true},
+        {"name":"neutral","value": false},
+        {"name":"reverse","value": false},
+        {"name":"negative","value": false}
+      ],
+      "response":false
+    },
+    {
+      "question": "DNA codes for proteins, which are the building blocks of organisms. What is the most abundant protein in the human body?",
+      "answers": [
+        {"name":"tubulin","value": false},
+        {"name":"albumin","value": false},
+        {"name":"collagen","value": true},
+        {"name":"keratin","value": false}
+      ],
+      "response":false
+    },
+    {
+      "question": "Noble gases are inert because they have completed outer electron shells. Which of these elements isn't a noble gas?",
+      "answers": [
+        {"name":"helium","value": false},
+        {"name":"argon","value": false},
+        {"name":"chlorine","value": true},
+        {"name":"krypton","value": false}
+      ],
+      "response":false
+    },
+    {
+      "question": "You can't live without water! What is its chemical formula?",
+      "answers": [
+        {"name":"H2","value":false},
+        {"name":"O2","value":false},
+        {"name":"H2O","value":true},
+        {"name":"H2O2","value":false}
+      ],
+      "response":false
+    },
+    {
+      "question": "The symbol Ag stands for which element?",
+      "answers": [
+        {"name":"gallium","value": false},
+        {"name":"magnesium","value": false},
+        {"name":"gold","value": false},
+        {"name":"silver","value": true}
+      ],
+      "response":false
+    }
+  ,
+    {
+      "question": "You can't live without iron. Where in the body is most of the iron located?",
+      "answers": [
+        {"name":"your brain","value": false},
+        {"name":"your skin","value": false},
+        {"name":"your bones","value": false},
+        {"name":"your blood","value": true}
+      ],
+      "response":false
+    }
+  ]
+}
