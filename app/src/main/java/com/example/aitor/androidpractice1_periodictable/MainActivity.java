@@ -3,6 +3,7 @@ package com.example.aitor.androidpractice1_periodictable;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final TextView nameToDisplay =(TextView)element_receipt.findViewById(R.id.element_name);
         final TextView descriptionDisplay =(TextView)element_receipt.findViewById(R.id.element_description);
         final ImageView imageToDisplay = (ImageView)element_receipt.findViewById(R.id.imageViewExpInfo);
+        final TextView urlToDisplay =(TextView)element_receipt.findViewById(R.id.urlView);
 
         elementArrList.stream().forEach(element -> {
             if(tag.equals(element.getName().toLowerCase())){
@@ -141,6 +143,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 nameToDisplay.setText(name);
                 final String description = element.getDescription() != null ? element.getDescription() : "";
                 descriptionDisplay.setText(description);
+                final String url = element.getUrl() != null ? element.getUrl() : "";
+                urlToDisplay.setText(url);
                 final String image = element.getImage() != null ? element.getImage() : "ic_launcher_foreground";
                 // we need id type int of drawable to get the image
                 final int imageId = res.getIdentifier(image , "drawable",getPackageName());
@@ -150,6 +154,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         } );
 
+        urlToDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = urlToDisplay.getText().toString();
+                Intent intnt = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intnt);
+            }
+        });
         innputAlert.setView(element_receipt);
         innputAlert.show();
     } // Pop up element detailed info
@@ -209,8 +221,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String description = jo_inside.getString("summary") != null ? jo_inside.getString("summary"): "";
                 String symbol = jo_inside.getString("symbol") != null ? jo_inside.getString("symbol"): "";
                 String image = jo_inside.getString("image") != null ? jo_inside.getString("image"): "";
-
-                elementArrList.add(new ChemicalElement(name, description, symbol, image));
+                String url = jo_inside.getString("source") != null ? jo_inside.getString("source"): "";
+                elementArrList.add(new ChemicalElement(name, description, symbol, image, url));
             }
         } catch (JSONException e) {
             e.printStackTrace();

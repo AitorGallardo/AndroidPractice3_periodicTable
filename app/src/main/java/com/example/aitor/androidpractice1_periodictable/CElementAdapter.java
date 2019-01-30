@@ -40,6 +40,10 @@ public class CElementAdapter extends ArrayAdapter<ChemicalElement> {
 
      TextView description = (TextView)item.findViewById(R.id.element_view_description);
      description.setText(this.elements.get(position).getDescription());
+
+//    TextView url = (TextView)item.findViewById(R.id.urlView);
+//    description.setText(this.elements.get(position).getUrl());
+
      return(item);
  }
 }

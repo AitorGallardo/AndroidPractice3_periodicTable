@@ -14,12 +14,14 @@ public class ChemicalElement implements Parcelable {
     protected String electronicConfig;
     protected String tag;
     protected String image;
+    protected String url;
 
-    public ChemicalElement(String name, String description, String symbol, String image){
+    public ChemicalElement(String name, String description, String symbol, String image, String url){
         this.name = name;
         this.description = description;
         this.symbol = symbol;
         this.image = image;
+        this.url = url;
     }
 
 
@@ -33,6 +35,7 @@ public class ChemicalElement implements Parcelable {
         electronicConfig = in.readString();
         tag = in.readString();
         image = in.readString();
+        url = in.readString();
     }
 
 
@@ -64,7 +67,9 @@ public class ChemicalElement implements Parcelable {
         return image;
     }
 
-
+    public String getUrl() {
+        return url;
+    }
 
     public static final Creator<ChemicalElement> CREATOR = new Creator<ChemicalElement>() {
         @Override
@@ -94,5 +99,6 @@ public class ChemicalElement implements Parcelable {
         dest.writeString(electronicConfig);
         dest.writeString(tag);
         dest.writeString(image);
+        dest.writeString(url);
     }
 }
