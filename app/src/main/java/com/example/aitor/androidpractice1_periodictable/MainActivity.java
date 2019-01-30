@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final TextView descriptionDisplay =(TextView)element_receipt.findViewById(R.id.element_description);
         final ImageView imageToDisplay = (ImageView)element_receipt.findViewById(R.id.imageViewExpInfo);
         final TextView urlToDisplay =(TextView)element_receipt.findViewById(R.id.urlView);
+        final TextView share =(TextView)element_receipt.findViewById(R.id.shareLink);
 
         elementArrList.stream().forEach(element -> {
             if(tag.equals(element.getName().toLowerCase())){
@@ -160,6 +161,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String url = urlToDisplay.getText().toString();
                 Intent intnt = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intnt);
+            }
+        });
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        "Hey check out this element. "+urlToDisplay.getText().toString());
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
             }
         });
         innputAlert.setView(element_receipt);
