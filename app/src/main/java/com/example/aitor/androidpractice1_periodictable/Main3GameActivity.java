@@ -38,13 +38,15 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3_game);
-
         parseJson(loadJson(fileName));
+
+
 
         questionView = (TextView) findViewById(R.id.quizView);
 //        questionView.setOnClickListener(this);
         nextQuestion = (TextView) findViewById(R.id.nextQuestion);
         nextQuestion.setOnClickListener(this);
+
 
 
         answer1 = (Button) findViewById(R.id.bttnQst1);
@@ -56,6 +58,8 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
         answer4 = (Button) findViewById(R.id.bttnQst4);
         answer4.setOnClickListener(this);
 
+        loadQuestion();
+
         // intent = new Intent(this, MainActivity.class);
         // test = getIntent().getExtras();
 
@@ -63,42 +67,26 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.nextQuestion:
-                loadQuestion();
-                Toast.makeText(this, "NEXT PLEASE",
-                        Toast.LENGTH_LONG).show();
-                break;
-//            case R.id.bttnQst1:
-//                boolean value = currentAnswers.get(0).isValue();
-//                quizList.get(currentQuestion).setResponse(value);
-//                if(value){
-//                    answer1.setBackgroundColor(Color.GREEN);
-//                    answer2.setBackgroundColor(Color.RED);
-//                    answer3.setBackgroundColor(Color.RED);
-//                    answer4.setBackgroundColor(Color.RED);
-//                } else {
-//                    answer1.setBackgroundColor(Color.RED);
-//                }
-//                Toast.makeText(this, "NEXT PLEASE",
-//                        Toast.LENGTH_LONG).show();
-//                break;
-//            case R.id.bttnQst2:
-//                loadQuestion();
-//                Toast.makeText(this, "NEXT PLEASE",
-//                        Toast.LENGTH_LONG).show();
-//                break;
-//            case R.id.bttnQst3:
-//                loadQuestion();
-//                Toast.makeText(this, "NEXT PLEASE",
-//                        Toast.LENGTH_LONG).show();
-//                break;
-//            case R.id.bttnQst4:
-//                loadQuestion();
-//                Toast.makeText(this, "NEXT PLEASE",
-//                        Toast.LENGTH_LONG).show();
-//                break;
+
+        int tag = Integer.parseInt(v.getTag().toString());
+
+        if(tag == 4){
+            currentQuestion++;
+            loadQuestion();
+        }else {
+            boolean value = currentAnswers.get(tag).isValue();
+            quizList.get(currentQuestion).setResponse(value);
+            if(value){
+                // v.setBackgroundColor(Color.GREEN);
+            } else {
+                // v.findViewWithTag(tag).setBackgroundColor(Color.RED);
+                v.setBackgroundColor(Color.RED);
+
+                //hola.findViewWithTag(1).setBackgroundColor(Color.GREEN);;
+
+            }
         }
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -117,7 +105,18 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
         answer3.setText(currentAnswers.get(2).getName());
         answer4.setText(currentAnswers.get(3).getName());
 
-        currentQuestion++;
+    }
+
+    public int rtrnCorrectAnswer(){
+
+        int correctAnswer = 0;
+
+        for(Answer ans : currentAnswers){
+            if(ans.isValue()){
+                correctAnswer = currentAnswers.indexOf(ans);
+            }
+        }
+        return correctAnswer;
     }
 
     public String loadJson(String fileName) {
