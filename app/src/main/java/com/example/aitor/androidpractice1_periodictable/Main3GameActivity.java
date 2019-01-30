@@ -1,6 +1,7 @@
 package com.example.aitor.androidpractice1_periodictable;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,7 +31,8 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
     String fileName = "quizGame.json";
 
     ArrayList<Quiz> quizList = new ArrayList<>();
-    int questionNumber = 0;
+    ArrayList <Answer> currentAnswers = new ArrayList<>();
+    int currentQuestion = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,35 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(this, "NEXT PLEASE",
                         Toast.LENGTH_LONG).show();
                 break;
+//            case R.id.bttnQst1:
+//                boolean value = currentAnswers.get(0).isValue();
+//                quizList.get(currentQuestion).setResponse(value);
+//                if(value){
+//                    answer1.setBackgroundColor(Color.GREEN);
+//                    answer2.setBackgroundColor(Color.RED);
+//                    answer3.setBackgroundColor(Color.RED);
+//                    answer4.setBackgroundColor(Color.RED);
+//                } else {
+//                    answer1.setBackgroundColor(Color.RED);
+//                }
+//                Toast.makeText(this, "NEXT PLEASE",
+//                        Toast.LENGTH_LONG).show();
+//                break;
+//            case R.id.bttnQst2:
+//                loadQuestion();
+//                Toast.makeText(this, "NEXT PLEASE",
+//                        Toast.LENGTH_LONG).show();
+//                break;
+//            case R.id.bttnQst3:
+//                loadQuestion();
+//                Toast.makeText(this, "NEXT PLEASE",
+//                        Toast.LENGTH_LONG).show();
+//                break;
+//            case R.id.bttnQst4:
+//                loadQuestion();
+//                Toast.makeText(this, "NEXT PLEASE",
+//                        Toast.LENGTH_LONG).show();
+//                break;
         }
     }
     @Override
@@ -78,15 +109,15 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
 
     public void loadQuestion(){
 
-       Quiz quiz =  quizList.get(questionNumber);
-       ArrayList <Answer> answers = quizList.get(questionNumber).getAnswers();
+       Quiz quiz =  quizList.get(currentQuestion);
+        currentAnswers = quizList.get(currentQuestion).getAnswers();
         questionView.setText(quiz.getQuestion());
-        answer1.setText(answers.get(0).getName());
-        answer2.setText(answers.get(1).getName());
-        answer3.setText(answers.get(2).getName());
-        answer4.setText(answers.get(3).getName());
+        answer1.setText(currentAnswers.get(0).getName());
+        answer2.setText(currentAnswers.get(1).getName());
+        answer3.setText(currentAnswers.get(2).getName());
+        answer4.setText(currentAnswers.get(3).getName());
 
-        questionNumber++;
+        currentQuestion++;
     }
 
     public String loadJson(String fileName) {

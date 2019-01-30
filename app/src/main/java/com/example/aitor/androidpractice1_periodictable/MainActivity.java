@@ -2,6 +2,7 @@ package com.example.aitor.androidpractice1_periodictable;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         String tag = (String) v.getTag();
         showElement(tag);
-
+    
     }
 
     //region Handle MENU
