@@ -136,7 +136,16 @@ public class Main2ListActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.arrowBack:
+                returnToMain();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     public void search(String query) {
 
         ArrayList<ChemicalElement> copyOfList = new ArrayList<ChemicalElement>();
@@ -193,4 +202,11 @@ public class Main2ListActivity extends AppCompatActivity {
         innputAlert.setView(element_receipt);
         innputAlert.show();
     } // Pop up element detailed info
+
+    public void returnToMain() {
+        //intent.putExtra("result","Accepted");
+        //setResult(RESULT_OK, intent);
+        finish();
+    }
 }
+
