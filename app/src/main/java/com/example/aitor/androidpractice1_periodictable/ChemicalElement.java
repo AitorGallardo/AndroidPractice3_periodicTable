@@ -3,7 +3,7 @@ package com.example.aitor.androidpractice1_periodictable;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ChemicalElement implements Parcelable {
+public class ChemicalElement implements Parcelable { // allows send list of this type of object using intents
 
     protected String name;
     protected String description;

@@ -44,7 +44,7 @@ public class Main2ListActivity extends AppCompatActivity {
         setTitle("Periodic Table");
 
         intent = new Intent(this, MainActivity.class);
-        // mainActivityInfo = getIntent().getExtras();
+
         listOfElements = getIntent().getParcelableArrayListExtra("Elements");
 
 
@@ -204,8 +204,6 @@ public class Main2ListActivity extends AppCompatActivity {
     } // Pop up element detailed info
 
     public void returnToMain() {
-        //intent.putExtra("result","Accepted");
-        //setResult(RESULT_OK, intent);
         finish();
     }
 }

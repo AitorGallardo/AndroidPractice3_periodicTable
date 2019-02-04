@@ -41,14 +41,10 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_main3_game);
         parseJson(loadJson(fileName));
 
-
-
         questionView = (TextView) findViewById(R.id.quizView);
-//        questionView.setOnClickListener(this);
+
         nextQuestion = (TextView) findViewById(R.id.nextQuestion);
         nextQuestion.setOnClickListener(this);
-
-
 
         answer1 = (Button) findViewById(R.id.bttnQst1);
         answer1.setOnClickListener(this);
@@ -61,8 +57,6 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
 
         loadQuestion();
 
-        // intent = new Intent(this, MainActivity.class);
-        // test = getIntent().getExtras();
 
     }
 
@@ -77,15 +71,7 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
         }else {
             boolean value = currentAnswers.get(tag).isValue();
             quizList.get(currentQuestion).setResponse(value);
-            if(value){
-                // v.setBackgroundColor(Color.GREEN);
-            } else {
-                // v.findViewWithTag(tag).setBackgroundColor(Color.RED);
-                v.setBackgroundColor(Color.RED);
-
-                //hola.findViewWithTag(1).setBackgroundColor(Color.GREEN);;
-
-            }
+            setButtonColors();
         }
 
     }
@@ -116,6 +102,32 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
         answer3.setText(currentAnswers.get(2).getName());
         answer4.setText(currentAnswers.get(3).getName());
 
+        answer1.setBackgroundColor(Color.GRAY);
+        answer2.setBackgroundColor(Color.GRAY);
+        answer3.setBackgroundColor(Color.GRAY);
+        answer4.setBackgroundColor(Color.GRAY);
+
+        answer1.setEnabled(true);
+        answer2.setEnabled(true);
+        answer3.setEnabled(true);
+        answer4.setEnabled(true);
+    }
+
+    public void setButtonColors(){
+
+        if (currentAnswers.get(0).isValue() == true) answer1.setBackgroundColor(Color.GREEN);
+        else answer1.setBackgroundColor(Color.RED);
+        if (currentAnswers.get(1).isValue() == true) answer2.setBackgroundColor(Color.GREEN);
+        else answer2.setBackgroundColor(Color.RED);
+        if (currentAnswers.get(2).isValue() == true) answer3.setBackgroundColor(Color.GREEN);
+        else answer3.setBackgroundColor(Color.RED);
+        if (currentAnswers.get(3).isValue() == true) answer4.setBackgroundColor(Color.GREEN);
+        else answer4.setBackgroundColor(Color.RED);
+
+        answer1.setEnabled(false);
+        answer2.setEnabled(false);
+        answer3.setEnabled(false);
+        answer4.setEnabled(false);
     }
 
     public int rtrnCorrectAnswer(){
