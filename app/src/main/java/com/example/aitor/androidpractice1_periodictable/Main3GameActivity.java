@@ -2,6 +2,7 @@ package com.example.aitor.androidpractice1_periodictable;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -39,6 +40,7 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3_game);
+        setTitle("Quiz");
         parseJson(loadJson(fileName));
 
         questionView = (TextView) findViewById(R.id.quizView);
@@ -71,7 +73,7 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
         }else {
             boolean value = currentAnswers.get(tag).isValue();
             quizList.get(currentQuestion).setResponse(value);
-            setButtonColors();
+            displayResults();
         }
 
     }
@@ -111,23 +113,46 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
         answer2.setEnabled(true);
         answer3.setEnabled(true);
         answer4.setEnabled(true);
+        // if buttons are disabled, responses cant be shown
+        answer1.setTextColor(Color.WHITE);
+        answer2.setTextColor(Color.WHITE);
+        answer3.setTextColor(Color.WHITE);
+        answer4.setTextColor(Color.WHITE);
+    }
+    public void displayResults(){
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setButtonColors();
+
+            }
+        }, 100);
+
     }
 
     public void setButtonColors(){
 
-        if (currentAnswers.get(0).isValue() == true) answer1.setBackgroundColor(Color.GREEN);
+        if (currentAnswers.get(0).isValue()) answer1.setBackgroundColor(Color.GREEN);
         else answer1.setBackgroundColor(Color.RED);
-        if (currentAnswers.get(1).isValue() == true) answer2.setBackgroundColor(Color.GREEN);
+        if (currentAnswers.get(1).isValue()) answer2.setBackgroundColor(Color.GREEN);
         else answer2.setBackgroundColor(Color.RED);
-        if (currentAnswers.get(2).isValue() == true) answer3.setBackgroundColor(Color.GREEN);
+        if (currentAnswers.get(2).isValue()) answer3.setBackgroundColor(Color.GREEN);
         else answer3.setBackgroundColor(Color.RED);
-        if (currentAnswers.get(3).isValue() == true) answer4.setBackgroundColor(Color.GREEN);
+        if (currentAnswers.get(3).isValue()) answer4.setBackgroundColor(Color.GREEN);
         else answer4.setBackgroundColor(Color.RED);
 
         answer1.setEnabled(false);
         answer2.setEnabled(false);
         answer3.setEnabled(false);
         answer4.setEnabled(false);
+
+    }
+
+    public void endGame(){
+        Toast.makeText(this, "Correct asswers: ",
+                Toast.LENGTH_LONG).show();
     }
 
     public int rtrnCorrectAnswer(){
