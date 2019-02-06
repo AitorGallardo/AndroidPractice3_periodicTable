@@ -69,7 +69,11 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
 
         if(tag == 4){
             currentQuestion++;
-            loadQuestion();
+            if(currentQuestion > 10){
+                endGame();
+            } else {
+                loadQuestion();
+            }
         }else {
             boolean value = currentAnswers.get(tag).isValue();
             quizList.get(currentQuestion).setResponse(value);
@@ -118,6 +122,11 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
         answer2.setTextColor(Color.WHITE);
         answer3.setTextColor(Color.WHITE);
         answer4.setTextColor(Color.WHITE);
+
+        // when we arrive to question n10 we end the game
+        if(currentQuestion == 10){
+            nextQuestion.setText("Finish");
+        }
     }
     public void displayResults(){
 
@@ -151,8 +160,17 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void endGame(){
-        Toast.makeText(this, "Correct asswers: ",
+
+        int correctAnswers = 0;
+
+        for(int i = 0;i < 10; i++){
+            if(quizList.get(i).isResponse()){
+                correctAnswers++;
+            }
+        }
+        Toast.makeText(this, "Correct asswers: "+correctAnswers,
                 Toast.LENGTH_LONG).show();
+        finish();
     }
 
     public int rtrnCorrectAnswer(){
