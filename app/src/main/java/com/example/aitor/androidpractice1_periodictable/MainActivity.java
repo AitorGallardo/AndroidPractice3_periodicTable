@@ -133,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Resources res = getResources();
 
         final TextView nameToDisplay =(TextView)element_receipt.findViewById(R.id.element_name);
+        final TextView aMassToDisplay =(TextView)element_receipt.findViewById(R.id.element_aMass);
+        final TextView categoryToDisplay =(TextView)element_receipt.findViewById(R.id.element_category);
         final TextView descriptionDisplay =(TextView)element_receipt.findViewById(R.id.element_description);
         final ImageView imageToDisplay = (ImageView)element_receipt.findViewById(R.id.imageViewExpInfo);
         final TextView urlToDisplay =(TextView)element_receipt.findViewById(R.id.urlView);
@@ -142,6 +144,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(tag.equals(element.getName().toLowerCase())){
                 final String name = element.getName() != null ? element.getName() : "";
                 nameToDisplay.setText(name);
+                final Double aMass = element.getAtomicMass() != null ? element.getAtomicMass() : -1.0;
+                aMassToDisplay.setText(aMass.toString());
+                final String category = element.getCategory() != null ? element.getCategory() : "";
+                categoryToDisplay.setText(category);
                 final String description = element.getDescription() != null ? element.getDescription() : "";
                 descriptionDisplay.setText(description);
                 final String url = element.getUrl() != null ? element.getUrl() : "";
@@ -236,8 +242,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String url = jo_inside.getString("source") != null ? jo_inside.getString("source"): "";
                 Double aMass = jo_inside.getDouble("atomic_mass") != -1.0 ? jo_inside.getDouble("atomic_mass"): -1.0;
                 String category = jo_inside.getString("category") != null ? jo_inside.getString("category"): "";
+                // to set first Character to UpperCase
+                String catFirstCharToUpper = Character.toUpperCase(category.charAt(0)) + category.substring(1);
 
-                elementArrList.add(new ChemicalElement(name,aMass,category, description, symbol, image, url));
+                elementArrList.add(new ChemicalElement(name,aMass,catFirstCharToUpper, description, symbol, image, url));
             }
         } catch (JSONException e) {
             e.printStackTrace();

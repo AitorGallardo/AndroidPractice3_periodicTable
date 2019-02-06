@@ -38,8 +38,11 @@ public class CElementAdapter extends ArrayAdapter<ChemicalElement> {
      TextView name = (TextView)item.findViewById(R.id.element_view_name);
      name.setText(this.elements.get(position).getName());
 
-     TextView description = (TextView)item.findViewById(R.id.element_view_description);
-     description.setText(this.elements.get(position).getDescription());
+    TextView aMass = (TextView)item.findViewById(R.id.element_view_aMass);
+    aMass.setText("Atomic mass:  " +this.elements.get(position).getAtomicMass().toString());
+
+     TextView category = (TextView)item.findViewById(R.id.element_view_category);
+    category.setText("Category:  " +this.elements.get(position).getCategory());
 
 //    TextView url = (TextView)item.findViewById(R.id.urlView);
 //    description.setText(this.elements.get(position).getUrl());

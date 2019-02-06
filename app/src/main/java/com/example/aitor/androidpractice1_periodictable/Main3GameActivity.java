@@ -173,17 +173,6 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
         finish();
     }
 
-    public int rtrnCorrectAnswer(){
-
-        int correctAnswer = 0;
-
-        for(Answer ans : currentAnswers){
-            if(ans.isValue()){
-                correctAnswer = currentAnswers.indexOf(ans);
-            }
-        }
-        return correctAnswer;
-    }
 
     public String loadJson(String fileName) {
         String json = null;

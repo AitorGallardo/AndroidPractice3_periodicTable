@@ -68,6 +68,9 @@ public class ChemicalElement implements Parcelable { // allows send list of this
     public String getTag() {
         return tag;
     }
+    public String getCategory() {
+        return category;
+    }
     public String getImage() {
         return image;
     }

@@ -161,9 +161,9 @@ public class Main2ListActivity extends AppCompatActivity {
                 if(element.name.toLowerCase().contains(queryToLow)){
                     succeededSearch = true;
                 }
-//                if(element.atomicMass.contains(query)){  // MORE OPTIONS FOR SEARCH
-//
-//                }
+                if(element.atomicMass.toString().contains(query)){  // MORE OPTIONS FOR SEARCH
+                    succeededSearch = true;
+                }
                 if(succeededSearch){
                     copyOfList.add(element);
                 }
@@ -181,6 +181,8 @@ public class Main2ListActivity extends AppCompatActivity {
         Resources res = getResources();
 
         final TextView nameToDisplay =(TextView)element_receipt.findViewById(R.id.element_name);
+        final TextView aMassToDisplay =(TextView)element_receipt.findViewById(R.id.element_aMass);
+        final TextView categoryToDisplay =(TextView)element_receipt.findViewById(R.id.element_category);
         final TextView descriptionDisplay =(TextView)element_receipt.findViewById(R.id.element_description);
         final ImageView imageToDisplay = (ImageView)element_receipt.findViewById(R.id.imageViewExpInfo);
 
@@ -188,6 +190,10 @@ public class Main2ListActivity extends AppCompatActivity {
             if(tag.equals(element.getName().toLowerCase())){
                 final String name = element.getName() != null ? element.getName() : "";
                 nameToDisplay.setText(name);
+                final Double aMass = element.getAtomicMass() != null ? element.getAtomicMass() : -1.0;
+                aMassToDisplay.setText(aMass.toString());
+                final String category = element.getCategory() != null ? element.getCategory() : "";
+                categoryToDisplay.setText(category);
                 final String description = element.getDescription() != null ? element.getDescription() : "";
                 descriptionDisplay.setText(description);
                 final String image = element.getImage() != null ? element.getImage() : "ic_launcher_foreground";
