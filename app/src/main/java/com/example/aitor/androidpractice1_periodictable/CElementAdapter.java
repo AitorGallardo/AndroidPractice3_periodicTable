@@ -23,6 +23,7 @@ public class CElementAdapter extends ArrayAdapter<ChemicalElement> {
     }
 
 @Override
+// This function will set what it will be seen in each element of the listview
  public View getView(int position, View convertView, ViewGroup parent){
      LayoutInflater inflater = LayoutInflater.from(getContext());
      View item = inflater.inflate(R.layout.each_element_view, null);

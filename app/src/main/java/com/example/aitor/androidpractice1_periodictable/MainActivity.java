@@ -56,10 +56,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void inflateLayoutWithImages(){
+
         gallery = findViewById(R.id.gallery);
         LayoutInflater inflater = LayoutInflater.from(this);
         Resources res = getResources();
 
+        // Inflate view every 2 elements of the list
         for(int i=0; i < elementArrList.size(); i=i+2){
             View view = inflater.inflate(R.layout.main_images, gallery, false);
 
@@ -73,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 final String name1 = elementArrList.get(i).getName() != null ? elementArrList.get(i).getName() : "ic_launcher_foreground";
                 final int imageId1 = res.getIdentifier(image1 , "drawable",getPackageName());
                 imageview1.setImageResource(imageId1);
-                imageview1.setTag(name1.toLowerCase());
+                imageview1.setTag(name1.toLowerCase()); // ! USING A TAG TO FIND ONCLICK
             } else {
                 final String image1 = "ic_launcher_foreground";
                 final int imageId1 = res.getIdentifier(image1 , "drawable",getPackageName());
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
+        // finding view by his tag
         String tag = (String) v.getTag();
         showElement(tag);
     

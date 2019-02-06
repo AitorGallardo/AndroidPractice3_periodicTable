@@ -117,7 +117,7 @@ public class Main3GameActivity extends AppCompatActivity implements View.OnClick
         answer2.setEnabled(true);
         answer3.setEnabled(true);
         answer4.setEnabled(true);
-        // if buttons are disabled, responses cant be shown
+        // if buttons are disabled, responses cant be shown, setted white to see responses clearly
         answer1.setTextColor(Color.WHITE);
         answer2.setTextColor(Color.WHITE);
         answer3.setTextColor(Color.WHITE);

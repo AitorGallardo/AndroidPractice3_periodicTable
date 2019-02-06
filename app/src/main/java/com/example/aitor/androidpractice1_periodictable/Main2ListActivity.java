@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Parcelable;
 import android.support.annotation.RequiresApi;
@@ -56,7 +57,7 @@ public class Main2ListActivity extends AppCompatActivity {
         if(listViewOfElements != null){
             listViewOfElements.setAdapter(allItemsAdapter);
         }
-
+        // sets what to do on click every one of the elements in the list
         listViewOfElements.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -93,9 +94,9 @@ public class Main2ListActivity extends AppCompatActivity {
                 public void onClick(View v) {
                 }
             });
-
-            EditText searchPlate = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-            searchPlate.setHint("Search");
+            // Sets all referent to searchbar
+            EditText searchBarTextContainer = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+            searchBarTextContainer.setHint("Search");
             View searchPlateView = searchView.findViewById(android.support.v7.appcompat.R.id.search_plate);
             searchPlateView.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
             // use this method for search process
@@ -185,6 +186,8 @@ public class Main2ListActivity extends AppCompatActivity {
         final TextView categoryToDisplay =(TextView)element_receipt.findViewById(R.id.element_category);
         final TextView descriptionDisplay =(TextView)element_receipt.findViewById(R.id.element_description);
         final ImageView imageToDisplay = (ImageView)element_receipt.findViewById(R.id.imageViewExpInfo);
+        final TextView urlToDisplay =(TextView)element_receipt.findViewById(R.id.urlView);
+        final TextView share =(TextView)element_receipt.findViewById(R.id.shareLink);
 
         listOfElements.stream().forEach(element -> {
             if(tag.equals(element.getName().toLowerCase())){
@@ -196,6 +199,8 @@ public class Main2ListActivity extends AppCompatActivity {
                 categoryToDisplay.setText(category);
                 final String description = element.getDescription() != null ? element.getDescription() : "";
                 descriptionDisplay.setText(description);
+                final String url = element.getUrl() != null ? element.getUrl() : "";
+                urlToDisplay.setText(url);
                 final String image = element.getImage() != null ? element.getImage() : "ic_launcher_foreground";
                 // we need id type int of drawable to get the image
                 final int imageId = res.getIdentifier(image , "drawable",getPackageName());
@@ -204,6 +209,25 @@ public class Main2ListActivity extends AppCompatActivity {
                 return;
             }
         } );
+        urlToDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = urlToDisplay.getText().toString();
+                Intent intnt = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intnt);
+            }
+        });
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        "Hey check out this element. "+urlToDisplay.getText().toString());
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+        });
 
         innputAlert.setView(element_receipt);
         innputAlert.show();
