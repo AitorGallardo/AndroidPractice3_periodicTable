@@ -234,7 +234,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String symbol = jo_inside.getString("symbol") != null ? jo_inside.getString("symbol"): "";
                 String image = jo_inside.getString("image") != null ? jo_inside.getString("image"): "";
                 String url = jo_inside.getString("source") != null ? jo_inside.getString("source"): "";
-                elementArrList.add(new ChemicalElement(name, description, symbol, image, url));
+                Double aMass = jo_inside.getDouble("atomic_mass") != -1.0 ? jo_inside.getDouble("atomic_mass"): -1.0;
+                String category = jo_inside.getString("category") != null ? jo_inside.getString("category"): "";
+
+                elementArrList.add(new ChemicalElement(name,aMass,category, description, symbol, image, url));
             }
         } catch (JSONException e) {
             e.printStackTrace();

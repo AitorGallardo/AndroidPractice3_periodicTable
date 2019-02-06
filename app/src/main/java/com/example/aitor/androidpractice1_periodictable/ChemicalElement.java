@@ -9,19 +9,23 @@ public class ChemicalElement implements Parcelable { // allows send list of this
     protected String description;
     protected String symbol;
     protected int atomicNumber;
-    protected String atomicMass;
+    protected Double atomicMass;
     protected String family;
     protected String electronicConfig;
     protected String tag;
+    protected String category;
     protected String image;
     protected String url;
 
-    public ChemicalElement(String name, String description, String symbol, String image, String url){
+    public ChemicalElement(String name, Double atomicMass, String category, String description, String symbol, String image, String url){
         this.name = name;
+        this.atomicMass = atomicMass;
+        this.category = category;
         this.description = description;
         this.symbol = symbol;
         this.image = image;
         this.url = url;
+
     }
 
 
@@ -30,12 +34,13 @@ public class ChemicalElement implements Parcelable { // allows send list of this
         description = in.readString();
         symbol = in.readString();
         atomicNumber = in.readInt();
-        atomicMass = in.readString();
+        atomicMass = in.readDouble();
         family = in.readString();
         electronicConfig = in.readString();
         tag = in.readString();
         image = in.readString();
         url = in.readString();
+        category = in.readString();
     }
 
 
@@ -51,7 +56,7 @@ public class ChemicalElement implements Parcelable { // allows send list of this
     public int getAtomicNumber() {
         return atomicNumber;
     }
-    public String getAtomicMass() {
+    public Double getAtomicMass() {
         return atomicMass;
     }
     public String getFamily() {
@@ -66,6 +71,7 @@ public class ChemicalElement implements Parcelable { // allows send list of this
     public String getImage() {
         return image;
     }
+
 
     public String getUrl() {
         return url;
@@ -94,11 +100,12 @@ public class ChemicalElement implements Parcelable { // allows send list of this
         dest.writeString(description);
         dest.writeString(symbol);
         dest.writeInt(atomicNumber);
-        dest.writeString(atomicMass);
+        dest.writeDouble(atomicMass);
         dest.writeString(family);
         dest.writeString(electronicConfig);
         dest.writeString(tag);
         dest.writeString(image);
         dest.writeString(url);
+        dest.writeString(category);
     }
 }
